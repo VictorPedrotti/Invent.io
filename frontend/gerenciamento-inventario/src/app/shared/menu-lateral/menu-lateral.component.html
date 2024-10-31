@@ -1,0 +1,19 @@
+<p-sidebar [(visible)]="barraLateralVisivel" [modal]="false" position="left" [styleClass]="'layout-sidebar'">
+  <ng-template pTemplate="header">
+  <div class="p-sidebar-header">
+    <img src="assets/imagens/inventio.png" alt="Logo" class="app-logo">
+  </div>
+  
+  </ng-template>
+    <div class="separator"></div>
+      <p-menu [model]="itensMenu" styleClass="layout-menu">
+        <ng-template pTemplate="item" let-item>
+          <ng-container>
+            <a [routerLink]="item.rota" class="p-menuitem-link">
+              <i [class]="item.icone"></i>
+              <span class="ml-2">{{ item.texto }}</span>
+            </a>
+          </ng-container>
+        </ng-template>
+      </p-menu>
+</p-sidebar>

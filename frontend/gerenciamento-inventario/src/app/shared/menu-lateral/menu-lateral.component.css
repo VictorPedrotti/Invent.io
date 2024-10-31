@@ -1,0 +1,73 @@
+::ng-deep .p-sidebar.layout-sidebar {
+  position: fixed !important;
+  height: 100% !important;
+  overflow: hidden;
+  top: 0 !important;
+  left: 0 !important;
+  width: 12rem !important; 
+  background: #495057 !important; 
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .p-sidebar.layout-sidebar .p-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0; 
+  gap: 0; 
+  height: 100%;
+
+}
+
+::ng-deep .p-sidebar.layout-sidebar .sidebar-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+::ng-deep .p-sidebar.layout-sidebar .app-logo {
+  width: 100%;
+  height: auto;
+}
+
+::ng-deep .layout-menu {
+  width: 100%;
+  background-color: #495057; 
+  border: none;
+}
+
+::ng-deep .p-sidebar-header {
+  padding: 0.7rem; 
+  height: auto; 
+}
+
+::ng-deep .layout-menu .p-menuitem-link {
+  color: #ffffff; 
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+::ng-deep .layout-menu .p-menuitem-link:hover {
+    background-color: #4b5563; 
+}
+
+::ng-deep .layout-menu i {
+    margin-right: 0.5rem; 
+    color: #ffffff; 
+}
+
+::ng-deep .p-sidebar.layout-sidebar .p-sidebar-close {
+  display: none; 
+}
+
+.separator {
+  height: 1px; 
+  background-color: #7d848e; 
+  width: 80%; 
+  margin: 0 auto;
+}
+

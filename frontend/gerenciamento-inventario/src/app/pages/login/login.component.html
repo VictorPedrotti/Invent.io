@@ -1,0 +1,28 @@
+<div class="main-container">
+  <div class="content-container">
+    <div class="logo-container">
+      <img alt="logo preta" src="assets/imagens/logo_preta.png" class="logo">
+      <h1>INVENT.IO</h1>
+    </div>
+    <div class="form-container">
+      <h2>Faça login na sua conta</h2>
+      <form [formGroup]="loginForm">
+        <input type="email" pInputText formControlName="email" placeholder="Digite seu e-mail" />
+        <input type="password" pInputText formControlName="senha" placeholder="Digite sua senha" />
+        <button pbutton label="LOGIN" type="button" class="p-button" [disabled]="loginForm.invalid" (click)="login()">
+          <span class="p-button-label">LOGIN</span>   
+        </button>
+      </form>
+      <p>Não possui conta? <a href="#">Cadastre-se.</a></p>
+    </div>
+  </div>
+  <div class="image-container">
+    <img alt="imagem de fundo" src="assets/imagens/background.png" class="background-image">
+    <div class="text-overlay">
+      <img alt="logo branca" src="assets/imagens/logo_branca.png" class="logo-texto">
+      <h1>Boas-vindas à Invent.io!</h1>
+      <p>Organize e acompanhe seu inventário com eficiência e facilidade. A Invent.io é sua parceira em controle de estoque, ajudando a simplificar processos e otimizar a gestão dos seus produtos.</p>
+      <p>Faça login para acessar todas as funcionalidades e tenha controle total do seu inventário - de qualquer lugar, a qualquer momento</p>
+    </div>
+  </div>
+</div>
