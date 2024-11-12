@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imagem: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       fornecedor_id: {
         allowNull: false,

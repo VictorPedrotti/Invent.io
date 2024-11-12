@@ -4,8 +4,11 @@ import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
-import { AutenticacaoService } from '../../core/services/autenticacao.service';
+import { AutenticacaoService } from '../../core/services/authService/autenticacao.service';
 import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { PasswordModule } from 'primeng/password';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,10 @@ import { CommonModule } from '@angular/common';
     InputTextModule,
     FloatLabelModule,
     ButtonModule,
-    CommonModule
+    CommonModule,
+    CardModule,
+    PasswordModule,
+    CheckboxModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -44,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.autenticacaoService.autenticar(email, senha).subscribe({
         next: (response) => {
           console.log('Login bem-sucedido', response)
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/produtos']);
         },
         error: (err) => {
           console.error('Erro ao fazer login', err)

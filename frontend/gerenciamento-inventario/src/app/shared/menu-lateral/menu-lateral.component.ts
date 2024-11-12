@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenuModule } from 'primeng/menu';
-import { ItemMenu } from '../../core/types/ItemMenu';
+import { ItemMenu } from '../../core/types/types';
 import { CommonModule } from '@angular/common';
 
 @Component({

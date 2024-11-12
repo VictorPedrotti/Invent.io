@@ -1,0 +1,86 @@
+<app-menu-superior nomePagina="Clientes"></app-menu-superior>
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+  <p-table #dt1 [value]="clientes" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+    [loading]="false" (sortFunction)="customSort($event)" [customSort]="true" [tableStyle]="{ 'width': '100%' }"
+    styleClass="p-datatable-gridlines" [resizableColumns]="true">
+    [expandedRowKeys]="abreHistorico">
+
+    <ng-template pTemplate="caption">
+      <div class="flex flex-wrap justify-content-end gap-2">
+        <p-button label="Expandir todos" icon="pi pi-plus" text (onClick)="listaHistoricos()" />
+        <p-button label="Fechar todos" icon="pi pi-minus" text (onClick)="fechaHistoricos()" />
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 5rem"></th>
+        <th pSortableColumn="id"> ID <p-sortIcon field="id" /></th>
+        <th pSortableColumn="nome" style="min-width:15rem">
+          Nome
+          <p-columnFilter type="text" field="nome" display="menu" [matchModeOptions]="matchModeOptions" />
+        </th>
+        <th pSortableColumn="cpf_cnpj" style="min-width:15rem">
+          CPF/CNPJ
+          <p-columnFilter type="text" field="cpf_cnpj" display="cpf_cnpj" [matchModeOptions]="matchModeOptions" />
+        </th>
+        <th pSortableColumn="contato" style="min-width:15rem">
+          Contato
+          <p-columnFilter type="text" field="contato" display="contato" [matchModeOptions]="matchModeOptions" />
+        </th>
+        <th pSortableColumn="endereco" style="min-width:15rem">
+          Endereço
+          <p-columnFilter type="text" field="endereco" display="endereco" [matchModeOptions]="matchModeOptions" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente let-expanded="expanded">
+      <tr>
+        <td>
+          <p-button type="button" pRipple [pRowToggler]="clientes" [text]="true" [rounded]="true" [plain]="true"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+        </td>
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.cpf_cnpj }}</td>
+        <td>{{ cliente.contato }}</td>
+        <td>{{ cliente.endereco }}</td>
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-pedido>
+      <tr>
+        <td colspan="7">
+          <div class="p-3">
+            <p-table [value]="pedido" dataKey="id">
+              <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">ID <p-sortIcon field="id" /></th>
+        <th pSortableColumn="data">Data <p-sortIcon field="data" /></th>
+        <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+        <th pSortableColumn="total">Total <p-sortIcon field="total" /></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pedido let-expanded="expanded">
+      <tr>
+        <td>
+          <p-button type="button" pRipple [pRowToggler]="pedido" [text]="true" [rounded]="true" [plain]="true"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+        </td>
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.data }}</td>
+        <td>{{ pedido.status }}</td>
+        <td>{{ pedido.total }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">Não existem pedidos associados ao cliente.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+</td>
+</tr>
+</ng-template>
+</p-table>
+</div>

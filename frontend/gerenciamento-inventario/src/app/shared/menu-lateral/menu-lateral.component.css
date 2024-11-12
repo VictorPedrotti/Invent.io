@@ -5,7 +5,7 @@
   top: 0 !important;
   left: 0 !important;
   width: 12rem !important; 
-  background: #495057 !important; 
+  background: #577877 !important; 
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@
 
 ::ng-deep .layout-menu {
   width: 100%;
-  background-color: #495057; 
+  background-color: #577877; 
   border: none;
 }
 
@@ -44,7 +44,7 @@
 }
 
 ::ng-deep .layout-menu .p-menuitem-link {
-  color: #ffffff; 
+  color: #f0f5f7; 
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -52,12 +52,12 @@
 }
 
 ::ng-deep .layout-menu .p-menuitem-link:hover {
-    background-color: #4b5563; 
+    background-color: #f0f5f7;
 }
 
 ::ng-deep .layout-menu i {
     margin-right: 0.5rem; 
-    color: #ffffff; 
+    color: #f0f5f7; 
 }
 
 ::ng-deep .p-sidebar.layout-sidebar .p-sidebar-close {
@@ -66,7 +66,7 @@
 
 .separator {
   height: 1px; 
-  background-color: #7d848e; 
+  background-color: #f0f5f7; 
   width: 80%; 
   margin: 0 auto;
 }

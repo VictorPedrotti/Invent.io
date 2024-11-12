@@ -8,6 +8,8 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 import { routes } from './app.routes';
 
@@ -22,7 +24,9 @@ export const appConfig: ApplicationConfig = {
       InputTextModule,
       ButtonModule,
       PasswordModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      ConfirmationService,
+      MessageService
     )
     
   ]

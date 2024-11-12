@@ -1,0 +1,35 @@
+<div class="form-produto">
+  <form [formGroup]="produtoForm">
+    <label for="nome" class="mb-2 block font-bold">Nome</label>
+    <input id="nome" type="text" pInputText formControlName="nome" placeholder="Digite o nome do produto"/> 
+    <label for="descricao" class="mb-2 block font-bold">Descrição</label>
+    <input id="descricao" type="text" pInputText formControlName="descricao" placeholder="Digite a descrição do produto"/>
+    <label for="preco" class="mb-2 block font-bold">Preço</label>
+    <p-inputNumber
+      formControlName="preco"
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      [step]="1"
+      incrementButtonIcon="pi pi-plus" 
+      decrementButtonIcon="pi pi-minus"
+      min="0"
+      mode="currency" 
+      currency="BRL" 
+      [style]="{ width: '100%' }"/>
+      <label for="quantidade" class="mb-2 block font-bold">Quantidade</label>
+      <input id="quantidade" type="number" pInputText formControlName="quantidade" placeholder="Digite a quantidade do produto" min="0">
+      <label for="fornecedor" class="mb-2 block font-bold">Fornecedor</label>
+      <p-dropdown
+        [options]="fornecedores"
+        formControlName="fornecedor"
+        placeholder="Selecione o fornecedor" />
+      <p-fileUpload
+        mode="basic"
+        chooseLabel="Imagem"
+        chooseIcon="pi pi-upload"
+        class="botao-icone"
+        accept="image/*"
+        maxFileSize="1000000"
+        (onUpload)="converteImagem($event)" />
+  </form>
+</div>  

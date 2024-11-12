@@ -8,4 +8,38 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html, body {
+  margin: 0; 
+  padding: 0; 
+  height: 100%; 
+}
+
+.background {
+  background-image: url('./assets/imagens/background-verde.png');
+  background-size: auto; 
+  background-position: top left; 
+  background-repeat: repeat;
+  width: 100vw; 
+  height: 100vh; 
+}
+
+.flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  margin-left: 12.5rem;
+}
+
+.botao-icone .pi {
+  margin-right: 0.5rem;      
+}
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar'
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
@@ -19,6 +19,6 @@ import { Router } from '@angular/router';
 })
 export class MenuSuperiorComponent {
 
-  nomePagina: string = 'Dashboard';
+  @Input() nomePagina: string = 'Dashboard';
   sidebarVisible: boolean = true;
 }

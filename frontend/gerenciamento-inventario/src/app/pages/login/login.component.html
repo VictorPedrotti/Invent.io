@@ -1,28 +1,30 @@
-<div class="main-container">
-  <div class="content-container">
-    <div class="logo-container">
-      <img alt="logo preta" src="assets/imagens/logo_preta.png" class="logo">
-      <h1>INVENT.IO</h1>
-    </div>
-    <div class="form-container">
-      <h2>Faça login na sua conta</h2>
-      <form [formGroup]="loginForm">
-        <input type="email" pInputText formControlName="email" placeholder="Digite seu e-mail" />
-        <input type="password" pInputText formControlName="senha" placeholder="Digite sua senha" />
-        <button pbutton label="LOGIN" type="button" class="p-button" [disabled]="loginForm.invalid" (click)="login()">
-          <span class="p-button-label">LOGIN</span>   
-        </button>
-      </form>
-      <p>Não possui conta? <a href="#">Cadastre-se.</a></p>
-    </div>
-  </div>
-  <div class="image-container">
-    <img alt="imagem de fundo" src="assets/imagens/background.png" class="background-image">
-    <div class="text-overlay">
-      <img alt="logo branca" src="assets/imagens/logo_branca.png" class="logo-texto">
-      <h1>Boas-vindas à Invent.io!</h1>
-      <p>Organize e acompanhe seu inventário com eficiência e facilidade. A Invent.io é sua parceira em controle de estoque, ajudando a simplificar processos e otimizar a gestão dos seus produtos.</p>
-      <p>Faça login para acessar todas as funcionalidades e tenha controle total do seu inventário - de qualquer lugar, a qualquer momento</p>
-    </div>
+<div class="background">
+  <img src="../../../assets/imagens/logo_branca.png" alt="Logo" class="logo">
+  <div class="form-card">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <p-card [style]="{ width: '540px', padding: '3rem', borderRadius: '2rem' }">
+        <ng-template pTemplate="header">
+          <div class="header-card">
+            <i class="pi pi-user" style="font-size: 3rem"></i>
+            <h2>Bem-vindo, Rodds!</h2>
+            <p>Faça login para continuar</p>
+          </div>
+        </ng-template>
+        <div class="form-content">
+          <label for="email" class="mb-2 block font-bold">E-mail</label>
+          <input id="email" type="email" pInputText formControlName="email" placeholder="Digite seu e-mail"/>
+          <label for="senha" class="mb-2 block font-bold">Senha</label>
+          <input id="senha" type="password" pInputText formControlName="senha" placeholder="Digite sua senha"/>
+        </div>
+        <div class="options">
+          <div class="lembrar-login">
+            <p-checkbox binary="true" class="remember-checkbox"></p-checkbox>
+            <label for="lembrarLogin">Lembrar de mim</label>
+          </div>
+          <a class="forgot-password" href="#">Esqueceu a senha?</a>
+        </div>
+        <button pButton type="submit" label="CONTINUAR" class="submit-btn"></button>
+      </p-card>
+    </form>
   </div>
 </div>
