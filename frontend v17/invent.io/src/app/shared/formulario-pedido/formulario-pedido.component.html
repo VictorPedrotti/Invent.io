@@ -1,0 +1,48 @@
+<div class="form-geral">
+  <form [formGroup]="pedidoForm">
+    <div class="formgrid grid linha-total-data">
+      <div class="field col-6">
+        <label for="data" class="mb-2 block font-bold">Data</label>
+        <p-calendar formControlName="data" showIcon="false"/>
+        <small class="p-error" *ngIf="submitted && !pedido.status">
+          Data é obrigatória.
+        </small>
+      </div>
+      <div class="field col-6">
+        <label for="total" class="mb-2 block font-bold">Total</label>
+        <p-inputNumber 
+          formControlName="total" 
+          buttonLayout="horizontal" 
+          [disabled]="true" 
+          mode="currency" 
+          currency="BRL"/>
+      </div>
+    </div>
+      <label for="cliente_id" class="mb-2 block font-bold">Cliente</label>
+      <p-dropdown 
+        [options]="clientes" 
+        optionLabel="nome" 
+        optionValue="id" 
+        formControlName="cliente_id">
+      </p-dropdown>
+      <small 
+        class="p-error" 
+        *ngIf="submitted && !pedidoForm.get('cliente_id')?.valid">
+        Cliente é obrigatório.
+      </small>
+      <div class="gap-data">
+        <label for="status" class="mb-2 block font-bold">Status</label>
+        <p-dropdown
+          [options]="status"
+          formControlName="status"/>
+      </div>
+    <p-button 
+      label="Salvar" 
+      [outlined]="true" 
+      severity="primary" 
+      (onClick)="salvarForm()"
+      [disabled]="pedidoForm.invalid" 
+      styleClass="botao-salvar-centralizado">
+    </p-button>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+::ng-deep .p-dropdown {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+::ng-deep input[pInputText], textarea[pInputTextarea], p-dropdown, p-inputNumber {
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+::ng-deep .botao-salvar-centralizado {
+  width: 100%;
+  max-width: 270px;
+  display: block;
+  margin: 0 auto;
+}
+
+.linha-total-data .field {
+  display: inline-block;
+  width: 48%; 
+  margin-right: 2%; 
+}
+
+.linha-total-data .field:last-child {
+  margin-right: 0;
+}
+
+::ng-deep .p-datepicker-calendar {
+  width: 100%;
+}

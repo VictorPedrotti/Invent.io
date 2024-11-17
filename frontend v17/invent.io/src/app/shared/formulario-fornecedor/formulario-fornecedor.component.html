@@ -1,0 +1,42 @@
+<div class="form-geral">
+  <form [formGroup]="fornecedorForm">
+    <div class="field">
+      <label for="nome" class="mb-2 block font-bold">Nome</label>
+      <input id="none" type="text" pInputText formControlName="nome" required>
+      <small class="p-error" *ngIf="submitted && !fornecedor.nome">
+          Nome é obrigatório.
+      </small>
+    </div>
+    <div class="formgrid grid linha-contato-cnpj">
+      <div class="field col-6">
+        <label for="cnpj" class="mb-2 block font-bold">CNPJ</label>
+        <p-inputMask
+          mask="99.999.999/9999-99"
+          formControlName="cnpj"
+          required
+          autofocus />
+          <small class="p-error" *ngIf="submitted && !fornecedor.cnpj">
+            CNPJ é obrigatório.
+        </small>
+      </div>
+      <div class="field col-6">
+        <label for="contato" class="mb-2 block font-bold">Contato</label>
+        <p-inputMask
+          mask="(99) 9999-9999"
+          formControlName="contato"
+          required
+          autofocus 
+          autoClear />
+          <small class="p-error" *ngIf="submitted && !fornecedor.cnpj">
+            Contato é obrigatório.
+        </small>
+      </div>
+    </div>
+    <div class="field">
+      <label for="descricao" class="mb-2 block font-bold">Endereço</label>
+      <textarea id="endereco" pInputTextarea formControlName="endereco" rows="3" cols="20"></textarea>
+    </div>
+    <p-button label="Salvar" [outlined]="true" severity="primary" (onClick)="salvarForm()"
+      [disabled]="fornecedorForm.invalid" styleClass="botao-salvar-centralizado"/>
+  </form>
+</div>  

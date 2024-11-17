@@ -1,0 +1,33 @@
+.background {
+  background-image: url('./assets/imagens/background-verde.png');
+  background-size: auto; 
+  background-position: top left; 
+  background-repeat: repeat;
+  width: 100vw; 
+  height: 100vh; 
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  margin-left: 12.5rem;
+}
+
+html body {
+  margin: 0;
+}
+
+.form-geral {
+  margin: 0 auto;
+  max-width: 28rem;
+}
+
+.form-geral .field {
+  margin-bottom: 1rem; 
+}

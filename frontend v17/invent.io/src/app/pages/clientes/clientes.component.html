@@ -1,0 +1,96 @@
+<app-menu-superior nomePagina="Clientes"></app-menu-superior>
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+  <p-table #dt1 [value]="clientes" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+    [loading]="false" [tableStyle]="{ 'width': '100%' }"
+    styleClass="p-datatable-gridlines" [resizableColumns]="true">
+    
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between align-items-center gap-2">
+        <div class="flex gap-2">
+          <p-button label="Limpar" [outlined]="true" icon="pi pi-filter-slash" class="botao-icone" (onClick)="limpar(dt1)" />
+          <p-button label="Adicionar Cliente" icon="pi pi-plus" (onClick)="abrirDialog()" class="botao-adicionar botao-icone" />
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 5rem"></th>
+        <th pSortableColumn="id"> ID <p-sortIcon field="id" /></th>
+        <th pSortableColumn="nome" style="min-width:15rem">
+          Nome
+          <p-columnFilter type="text" field="nome" display="menu" />
+        </th>
+        <th pSortableColumn="cpf_cnpj" style="min-width:15rem">
+          CPF/CNPJ
+          <p-columnFilter type="text" field="cpf_cnpj" display="menu" />
+        </th>
+        <th pSortableColumn="contato" style="min-width:15rem">
+          Contato
+          <p-columnFilter type="text" field="contato" display="menu" />
+        </th>
+        <th pSortableColumn="endereco" style="min-width:15rem">
+          Endereço
+          <p-columnFilter type="text" field="endereco" display="menu" />
+        </th>
+        <th style="min-width:3rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente let-expanded="expanded">
+      <tr>
+        <td>
+          <p-button type="button" pRipple [pRowToggler]="cliente" [text]="true" [rounded]="true" [plain]="true"
+          [icon]="'pi pi-search'" (onClick)="abreHistoricoDeCompra(cliente)"/>
+        </td>
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.cpf_cnpj }}</td>
+        <td>{{ cliente.contato }}</td>
+        <td>{{ cliente.endereco }}</td>
+        <td>
+          <p-button
+            icon="pi pi-pencil"
+            class="mr-2"
+            [rounded]="true"
+            [outlined]="true"
+            severity="success"
+            (onClick)="editaCliente(cliente)" />
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            [rounded]="true"
+            [outlined]="true"
+            (onClick)="abrirConfirmacaoExclusao(cliente)" /> 
+        </td>
+    </ng-template>
+</p-table>
+</div>
+
+<app-dialog [(visible)]="dialogVisible" tituloFormulario="cliente">
+  <app-formulario-cliente (salvar)="salvarCliente($event)" [cliente]="clienteSelecionado"></app-formulario-cliente>
+</app-dialog>
+
+<app-confirmation-dialog
+  (onConfirm)="deletaProduto()">
+</app-confirmation-dialog>
+
+<p-toast></p-toast>
+
+<div *ngIf="historicoAberto" class="historico-container">
+  <div class="historico-content">
+    <h3>Histórico de Compras</h3>
+    <button pButton type="button" label="Fechar" icon="pi pi-times" (click)="fecharHistorico()"></button>
+
+    <p-dataView [value]="pedidos" [layout]="'list'" [paginator]="true" [rows]="5">
+      <ng-template let-pedido pTemplate="listItem">
+        <div class="col-12">
+          <div class="pedido-item">
+            <h4>{{ pedido.status }}</h4>
+            <p><strong>Data:</strong> {{ pedido.data | date }}</p>
+            <p><strong>Valor:</strong> {{ pedido.valor | currency }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+</div>

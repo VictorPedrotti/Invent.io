@@ -1,0 +1,36 @@
+::ng-deep .p-dropdown {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+::ng-deep .p-fileupload {
+  display: flex;
+  justify-content: center; 
+  margin-bottom: 1.5rem;
+}
+
+::ng-deep input[pInputText], textarea[pInputTextarea], p-dropdown, p-inputNumber {
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+::ng-deep .botao-salvar-centralizado {
+  width: 100%;
+  max-width: 270px;
+  display: block;
+  margin: 0 auto;
+}
+
+.linha-preco-quantidade .field {
+  display: inline-block;
+  width: 48%; 
+  margin-right: 2%; 
+}
+
+.linha-preco-quantidade .field:last-child {
+  margin-right: 0;
+}
+
+.gap-data {
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,22 @@
+::ng-deep .linha-contato-cnpj .field {
+  display: inline-block;
+  width: 48%; 
+  margin-right: 2%; 
+}
+
+::ng-deep .linha-contato-cnpj .field:last-child {
+  margin-right: 0;
+}
+
+::ng-deep input[pInputText], textarea[pInputTextarea], p-dropdown, p-inputNumber, p-inputmask {
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+::ng-deep .botao-salvar-centralizado {
+  width: 100%;
+  max-width: 270px;
+  display: block;
+  margin: 0 auto;
+}
+

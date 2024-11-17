@@ -1,0 +1,75 @@
+<app-menu-superior nomePagina="Fornecedores"></app-menu-superior>
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+  <p-table #dt1 [value]="fornecedores" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+    [loading]="false" [tableStyle]="{ 'width': '100%' }"
+    styleClass="p-datatable-gridlines" [resizableColumns]="true">
+
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <p-button label="Limpar" [outlined]="true" icon="pi pi-filter-slash" class="botao-icone" (onClick)="limpar(dt1)" />
+        <p-button label="Adicionar Fornecedor" icon="pi pi-plus" (onClick)="abrirDialog()" class="botao-adicionar botao-icone"/>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="min-width:3rem" pSortableColumn="id">ID <p-sortIcon field="id" /></th>
+        <th pSortableColumn="nome" style="min-width:10rem">
+          Nome
+          <p-columnFilter type="text" field="nome" display="menu"/>
+        </th>
+        <th pSortableColumn="CNPJ" style="min-width:10rem">
+          CNPJ
+          <p-columnFilter type="text" field="CNPJ" display="menu"/>
+        </th>
+        <th style="min-width:10rem"  pSortableColumn="contato">
+          Contato
+          <p-columnFilter type="text" field="contato" display="menu"/>
+        </th>
+        <th style="min-width:10rem"  pSortableColumn="endereco">
+          Endereço
+          <p-columnFilter type="text" field="endereco" display="menu"/>
+        </th>
+        <th style="min-width:3rem"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-fornecedor>
+      <tr>
+        <td>{{ fornecedor.id }}</td>
+        <td>{{ fornecedor.nome }}</td>
+        <td>{{ fornecedor.cnpj }}</td>
+        <td>{{ fornecedor.contato }}</td>
+        <td>{{ fornecedor.endereco }}</td>
+        <td>
+          <p-button
+            icon="pi pi-pencil"
+            class="mr-2"
+            [rounded]="true"
+            [outlined]="true"
+            severity="success"
+            (onClick)="editaFornecedor(fornecedor)" />
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            [rounded]="true"
+            [outlined]="true"
+            (onClick)="abrirConfirmacaoExclusao(fornecedor)" /> 
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-dialog [(visible)]="dialogVisible" tituloFormulario="fornecedor">
+  <app-formulario-fornecedor (salvar)="salvarFornecedor($event)" [fornecedor]="fornecedorSelecionado"></app-formulario-fornecedor>  
+</app-dialog>
+
+<app-confirmation-dialog
+  (onConfirm)="deletaFornecedor()">
+</app-confirmation-dialog>
+
+<p-toast></p-toast>
+
+

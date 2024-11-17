@@ -1,0 +1,29 @@
+<div class="form-geral">
+  <form [formGroup]="produtoForm">
+    <div class="field">
+      <label for="nome" class="mb-2 block font-bold">Nome</label>
+      <input id="nome" type="text" pInputText formControlName="nome" />
+    </div>
+    <div class="field">
+      <label for="descricao" class="mb-2 block font-bold">Descrição</label>
+      <textarea id="descricao" pInputTextarea formControlName="descricao" required rows="3" cols="20">
+      </textarea>
+    </div>
+    <div class="formgrid grid linha-preco-quantidade">
+      <div class="field col-6">
+        <label for="preco" class="mb-2 block font-bold">Preço</label>
+        <p-inputNumber formControlName="preco" buttonLayout="horizontal"min="0" mode="currency" currency="BRL"/>
+      </div>
+      <div class="field col-6">
+        <label for="quantidade" class="mb-2 block font-bold">Quantidade</label>
+        <p-inputNumber id="quantidade" formControlName="quantidade" min="0"/> 
+      </div>
+    </div>
+    <label for="fornecedor_id" class="mb-2 block font-bold">Fornecedor</label>
+    <p-dropdown [options]="fornecedores" optionLabel="nome" optionValue="id" formControlName="fornecedor_id"/>
+    <p-fileUpload #fileUpload mode="basic" chooseLabel="Imagem" chooseIcon="pi pi-upload" class="botao-icone"
+      accept="image/*" maxFileSize="1000000" (onSelect)="converteImagem($event)" (onUpload)="limparUploadImagem()" />
+    <p-button label="Salvar" [outlined]="true" severity="primary" (onClick)="salvarForm()"
+      [disabled]="produtoForm.invalid" styleClass="botao-salvar-centralizado"/>
+  </form>
+</div>

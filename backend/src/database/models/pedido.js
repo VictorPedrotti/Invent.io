@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Pedido.belongsTo(models.Cliente, {
         foreignKey: 'cliente_id',
-        as: 'cliente'
       });
       Pedido.hasMany(models.ItemPedido, {
         foreignKey: 'pedido_id'
