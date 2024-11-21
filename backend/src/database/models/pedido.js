@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'cliente_id',
       });
       Pedido.hasMany(models.ItemPedido, {
-        foreignKey: 'pedido_id'
+        foreignKey: 'pedido_id',
+        as: 'ItensPedido'
       });
       Pedido.hasMany(models.Transacao, {
         foreignKey: 'pedido_id'
