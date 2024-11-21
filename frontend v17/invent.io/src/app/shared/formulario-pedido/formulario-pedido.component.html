@@ -3,19 +3,16 @@
     <div class="formgrid grid linha-total-data">
       <div class="field col-6">
         <label for="data" class="mb-2 block font-bold">Data</label>
-        <p-calendar formControlName="data" showIcon="false"/>
+        <input type="date" pInputText formControlName="data">
         <small class="p-error" *ngIf="submitted && !pedido.status">
           Data é obrigatória.
         </small>
       </div>
       <div class="field col-6">
-        <label for="total" class="mb-2 block font-bold">Total</label>
-        <p-inputNumber 
-          formControlName="total" 
-          buttonLayout="horizontal" 
-          [disabled]="true" 
-          mode="currency" 
-          currency="BRL"/>
+        <label for="status" class="mb-2 block font-bold">Status</label>
+        <p-dropdown
+          [options]="status"
+          formControlName="status"/>
       </div>
     </div>
       <label for="cliente_id" class="mb-2 block font-bold">Cliente</label>
@@ -30,12 +27,6 @@
         *ngIf="submitted && !pedidoForm.get('cliente_id')?.valid">
         Cliente é obrigatório.
       </small>
-      <div class="gap-data">
-        <label for="status" class="mb-2 block font-bold">Status</label>
-        <p-dropdown
-          [options]="status"
-          formControlName="status"/>
-      </div>
     <p-button 
       label="Salvar" 
       [outlined]="true" 

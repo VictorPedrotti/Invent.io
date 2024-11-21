@@ -40,6 +40,7 @@ export class FormularioProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscaFornecedores();
+    this.limparUploadImagem();
     this.produtoForm = this.formBuilder.group({
       nome: [null, Validators.required],
       imagem: [null],
@@ -54,26 +55,35 @@ export class FormularioProdutoComponent implements OnInit {
     const file = event.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const img = new Image();
-        img.src = e.target.result;
-
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            ctx.drawImage(img, 0, 0);
-            const base64WebP = canvas.toDataURL('image/webp', 0.8);
-            console.log(base64WebP);
-            this.produtoForm.patchValue({
-              imagem: base64WebP
-            });
-          }
+      if (file.type === 'image/webp') {
+        reader.onload = (e: any) => {
+          this.produtoForm.patchValue({
+            imagem: e.target.result 
+          });
         };
-      };
+        reader.readAsDataURL(file);
+      } else {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const img = new Image();
+          img.src = e.target.result;
+
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.drawImage(img, 0, 0);
+              const base64WebP = canvas.toDataURL('image/webp', 0.8);
+              this.produtoForm.patchValue({
+                imagem: base64WebP
+              });
+            }
+          };
+        };
       reader.readAsDataURL(file);
+      }
     }
   }
 

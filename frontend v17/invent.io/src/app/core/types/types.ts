@@ -37,3 +37,11 @@ export interface Fornecedor {
   contato: string
   endereco: string
 }
+
+export interface ItemPedido {
+  id: number
+  pedido_id: number
+  produto_id: number
+  quantidade: number
+  precoUnitario: number  
+}

@@ -1,0 +1,32 @@
+<div class="form-geral">
+  <form [formGroup]="itemPedidoForm">
+    <div class="formgrid grid linha-produto-quantidade">
+      <div class="field col-6">
+        <label for="produto" class="mb-2 block font-bold">Produto</label>
+        <p-dropdown
+          [options]="produtos"
+          optionLabel = "nome"
+          optionValue = "id"
+          formControlName="produto_id"/>
+      </div>
+      <div class="field col-6">
+        <label for="quantidade" class="mb-2 block font-bold">Quantidade</label>
+        <p-inputNumber id="quantidade" formControlName="quantidade" min="1"/> 
+      </div>
+      <small 
+        class="p-error" 
+        *ngIf="submitted && !itemPedidoForm.get('quantidade')?.valid">
+        Quantidade é obrigatório.
+      </small>
+    </div>
+    <p-button 
+      label="Salvar" 
+      [outlined]="true" 
+      severity="primary" 
+      (onClick)="salvarForm()"
+      [disabled]="itemPedidoForm.invalid" 
+      styleClass="botao-salvar-centralizado">
+    </p-button>
+  </form>
+</div>
+

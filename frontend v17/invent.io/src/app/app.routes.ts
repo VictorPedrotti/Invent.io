@@ -4,6 +4,7 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { FornecedorComponent } from './pages/fornecedor/fornecedor.component';
 import { PedidoComponent } from './pages/pedido/pedido.component';
+import { ItensPedidoComponent } from './pages/itens-pedido/itens-pedido.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'clientes', component: ClientesComponent },
   { path: 'produtos', component: ProdutosComponent},
   { path: 'fornecedores', component: FornecedorComponent},
-  { path: 'pedidos', component: PedidoComponent}
+  { path: 'pedidos', component: PedidoComponent},
+  { path: 'itensPedido/pedido/:id', component: ItensPedidoComponent }
 ];

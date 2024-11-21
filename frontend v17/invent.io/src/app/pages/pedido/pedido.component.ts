@@ -11,6 +11,9 @@ import { MessageService } from 'primeng/api';
 import { TradutorService } from '../../core/services/tradutor.service';
 import { DialogComponent } from "../../shared/dialog/dialog.component";
 import { FormularioPedidoComponent } from "../../shared/formulario-pedido/formulario-pedido.component";
+import { ToastModule } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedido',
@@ -22,7 +25,9 @@ import { FormularioPedidoComponent } from "../../shared/formulario-pedido/formul
     ButtonModule,
     ConfirmationDialogComponent,
     DialogComponent,
-    FormularioPedidoComponent
+    FormularioPedidoComponent,
+    ToastModule,
+    CommonModule
 ],
   providers: [MessageService],
   templateUrl: './pedido.component.html',
@@ -43,7 +48,8 @@ export class PedidoComponent implements OnInit{
     private pedidoService: PedidoService,
     private clienteService: ClienteService,
     private messageService: MessageService,
-    private tradutorService: TradutorService
+    private tradutorService: TradutorService,
+    private router: Router
   ) {
 
   }
@@ -55,7 +61,9 @@ export class PedidoComponent implements OnInit{
   }
 
   editaPedido(pedido: Pedido){
-    
+    this.isEditMode = true;
+    this.pedidoSelecionado = pedido;
+    this.dialogVisible = true;  
   }
 
   abrirConfirmacaoExclusao (pedido: Pedido) {
@@ -65,11 +73,20 @@ export class PedidoComponent implements OnInit{
   }
 
   redirecionaItensPedido (pedido: Pedido) {
-
+    const id = pedido.id; 
+    this.router.navigate([`itensPedido/pedido/${id}`]);
   }
 
   deletaPedido() {
-
+    this.pedidoService.excluirRegistro(this.pedidoSelecionado.id).subscribe({
+      next: res => {
+        this.messageService.add({ severity: 'success', summary: 'Excluído', detail: 'Pedido excluído com sucesso' });
+        this.buscaPedidos(); 
+      },
+      error: err => {
+        this.messageService.add({ severity: 'error', summary: 'erro', detail: 'Erro ao excluir pedido'})
+      }
+    })
   }
 
   abrirDialog() {
@@ -101,7 +118,32 @@ export class PedidoComponent implements OnInit{
   }
 
   salvarPedido(pedidoData: Pedido) {
-
+    console.log(pedidoData)
+    if (this.isEditMode) {
+      const pedidoEditado = { ...pedidoData, id: this.pedidoSelecionado.id}
+      this.pedidoService.editarRegistro(pedidoEditado).subscribe({
+        next: res => {
+          this.messageService.add({ severity: 'success', summary: 'Atualização', detail: 'Pedido atualizado com sucesso'})
+          this.buscaPedidos();
+          this.dialogVisible = false;
+        },
+        error: err => {
+          this.messageService.add({ severity: 'error', summary: 'Erro ao atualizar pedido', detail: err.message})
+        }
+      })
+    } else {
+      this.pedidoService.salvarNovo(pedidoData).subscribe({
+        next: res => {
+          this.messageService.add({ severity: 'success', summary: 'Adicionar', detail: 'pedido adicionado com sucesso'})
+          this.buscaPedidos();
+          this.dialogVisible = false;
+        },
+        error: err => {
+          this.messageService.add({ severity: 'error', summary: 'Erro ao adicionar pedido', detail: err})  
+          this.dialogVisible = false;
+        }
+      }) 
+    }
   }
 
 }

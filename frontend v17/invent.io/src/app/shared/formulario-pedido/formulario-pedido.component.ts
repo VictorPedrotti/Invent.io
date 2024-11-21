@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { FormsModule, FormGroup, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { Cliente, Pedido } from '../../core/types/types';
 import { ButtonModule } from 'primeng/button'
-import { InputTextModule } from 'primeng/inputtext';import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
+import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar';
 import { ClienteService } from '../../core/services/cliente.service';
 import { DropdownModule } from 'primeng/dropdown';
@@ -44,8 +45,8 @@ export class FormularioPedidoComponent {
     this.pedidoForm = this.formBuilder.group({
       data: [new Date(), Validators.required],
       status: ["", Validators.required],
-      total: ["", Validators.required],
-      cliente_id: [null],
+      total: [0],
+      cliente_id: [null, Validators.required],
     })  
   }
 
@@ -55,8 +56,19 @@ export class FormularioPedidoComponent {
 
   salvarForm() {
     if (this.pedidoForm.valid) {
-      this.salvar.emit(this.pedidoForm.value);
+      const formValues = { ...this.pedidoForm.value };
+      formValues.data = this.formatarDataISO(formValues.data);
+      formValues.total = 0;
+      this.salvar.emit(formValues);
     }
+  }
+
+  private formatarDataISO(data: Date | string): string {
+    const date = new Date(data); 
+    const ano = date.getFullYear();
+    const mes = String(date.getMonth() + 1).padStart(2, '0'); 
+    const dia = String(date.getDate()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}`;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

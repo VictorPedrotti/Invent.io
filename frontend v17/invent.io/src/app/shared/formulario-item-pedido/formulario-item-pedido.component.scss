@@ -2,16 +2,9 @@
   margin-bottom: 1.5rem;
   width: 100%;
 }
-
-::ng-deep .p-fileupload {
-  display: flex;
-  justify-content: center; 
-  margin-bottom: 1.5rem;
-}
-
 ::ng-deep input[pInputText], textarea[pInputTextarea], p-dropdown, p-inputNumber {
   width: 100%; 
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 ::ng-deep .botao-salvar-centralizado {
@@ -21,16 +14,12 @@
   margin: 2rem auto;
 }
 
-.linha-preco-quantidade .field {
+.linha-produto-quantidade .field {
   display: inline-block;
-  width: 49%; 
+  width: 48%; 
   margin-right: 2%; 
 }
 
-.linha-preco-quantidade .field:last-child {
+.linha-produto-quantidade .field:last-child {
   margin-right: 0;
-}
-
-.gap-data {
-  margin-bottom: 2rem;
 }

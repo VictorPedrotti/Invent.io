@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
+import { ItemPedido } from '../types/types';
 
 export const API = new InjectionToken<string>('apiUrl')
 
@@ -47,6 +48,13 @@ export class Service<T> {
     editarRegistro(modelo: T): Observable<T> {
       const url =`${this.apiUrl}/${(modelo as any).id}`
       return this.http.put<T>(url, modelo).pipe(
+        catchError(this.handleError)
+      );
+    }
+
+    buscarItensPorPedido(id: number): Observable<T[]> {
+      const url =`${this.apiUrl}/pedido/${id}`
+      return this.http.get<T[]>(url).pipe(
         catchError(this.handleError)
       );
     }
