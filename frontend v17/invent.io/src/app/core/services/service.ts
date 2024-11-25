@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
-import { ItemPedido } from '../types/types';
 
 export const API = new InjectionToken<string>('apiUrl')
 
@@ -60,8 +59,19 @@ export class Service<T> {
     }
 
     private handleError(error: any): Observable<never> {
-      console.error('Um erro ocorre:', error);
-      return throwError('Deu ruim!');
+      console.error('Erro capturado:', error);
+    
+      const status = error.status || 'Desconhecido';
+      const statusText = error.statusText || 'Erro';
+      const mensagem = error?.error?.mensagem || 'Ocorreu um erro desconhecido.';
+    
+      const toastError = {
+        severity: 'error',
+        summary: `${status} - ${statusText}`,
+        detail: mensagem
+      };
+
+      return throwError(() => toastError);
     }
   
 }

@@ -31,7 +31,7 @@ import { FornecedorService } from '../../core/services/fornecedor.service';
     MenuLateralComponent,
     DialogComponent,
     FormularioProdutoComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
 ],
   providers: [MessageService],
   templateUrl: './produtos.component.html',
@@ -122,23 +122,33 @@ editaProduto(produto: Produto) {
         this.buscaProdutos(); 
       },
       error: err => {
-        this.messageService.add({ severity: 'error', summary: 'erro', detail: 'Erro ao excluir produto'})
+        this.messageService.add({ severity: 'error', summary: 'erro', detail: err })
       }
     })
   }
 
   buscaProdutos() {
-    this.produtoService.obterTodos().subscribe((listaProdutos) => {
-      this.produtos = listaProdutos.map(produto => ({
-        ...produto,
-        fornecedor: this.fornecedores.find(f => f.id === produto.fornecedor_id) 
-      }));
+    this.produtoService.obterTodos().subscribe({
+      next: (listaProdutos) => {
+        this.produtos = listaProdutos.map(produto => ({
+          ...produto,
+          fornecedor: this.fornecedores.find(f => f.id === produto.fornecedor_id) 
+        }));
+      },
+      error: (err) => {
+        this.messageService.add(err)  
+      }
     })  
   }
 
   buscaFornecedores() {
-    this.fornecedorService.obterTodos().subscribe((listaFornecedores) => {
-      this.fornecedores = listaFornecedores;
+    this.fornecedorService.obterTodos().subscribe({
+      next: (listaFornecedores) => {
+        this.fornecedores = listaFornecedores;
+      },
+      error: (err) => {
+        this.messageService.add(err)  
+      }
     })
   }
 }
