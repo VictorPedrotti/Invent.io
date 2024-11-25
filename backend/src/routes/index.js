@@ -6,16 +6,18 @@ const fornecedores = require('./fornecedorRoutes.js');
 const pedidos = require('./pedidoRoute.js');
 const itensPedidos = require('./itemPedidoRoute.js');
 const transacoes = require('./transacaoRoute.js');
+const { validaAutenticacao } = require('../utils/auth.js');
 
 module.exports = app => {
+  app.use(express.json());
+  app.use(usuarios)
+  app.use(validaAutenticacao);
   app.use(
-    express.json(),
-    usuarios,
     produtos,
     clientes,
     fornecedores,
     pedidos,
     itensPedidos,
     transacoes
-  );
+  )
 };
