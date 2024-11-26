@@ -76,21 +76,3 @@
 
 <p-toast></p-toast>
 
-<div *ngIf="historicoAberto" class="historico-container">
-  <div class="historico-content">
-    <h3>Histórico de Compras</h3>
-    <button pButton type="button" label="Fechar" icon="pi pi-times" (click)="fecharHistorico()"></button>
-
-    <p-dataView [value]="pedidos" [layout]="'list'" [paginator]="true" [rows]="5">
-      <ng-template let-pedido pTemplate="listItem">
-        <div class="col-12">
-          <div class="pedido-item">
-            <h4>{{ pedido.status }}</h4>
-            <p><strong>Data:</strong> {{ pedido.data | date }}</p>
-            <p><strong>Valor:</strong> {{ pedido.valor | currency }}</p>
-          </div>
-        </div>
-      </ng-template>
-    </p-dataView>
-  </div>
-</div>

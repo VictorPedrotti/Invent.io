@@ -12,7 +12,6 @@ import { DialogComponent } from "../../shared/dialog/dialog.component";
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog/confirmation-dialog.component";
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
-import { DataViewModule } from 'primeng/dataview';
 
 @Component({
   selector: 'app-clientes',
@@ -26,8 +25,7 @@ import { DataViewModule } from 'primeng/dataview';
     ToastModule,
     FormularioClienteComponent,
     ConfirmationDialogComponent,
-    CommonModule,
-    DataViewModule
+    CommonModule
 ],
   providers: [MessageService],
   templateUrl: './clientes.component.html',
