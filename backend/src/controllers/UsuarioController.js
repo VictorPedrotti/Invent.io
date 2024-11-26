@@ -14,7 +14,7 @@ class UsuarioController extends Controller {
       const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
       const { senha, ...user } = novoRegistroCriado.dataValues;
 
-      const token = jwt.sign({ user: user.id })
+      const token = jwt.sign({ user: user.id, admin: user.admin });
       return res.status(201).json({ user, token });
     } catch (erro) {
       return res.status(500).json({ erro: erro.message });
@@ -33,7 +33,7 @@ class UsuarioController extends Controller {
       }
 
       const { senha: hashedSenha, ...user } = usuario.dataValues;
-      const token = jwt.sign({ user: user.id });
+      const token = jwt.sign({ user: user.id, admin: user.admin });
 
       return res.status(200).json({ user, token });
     } catch (erro) {
