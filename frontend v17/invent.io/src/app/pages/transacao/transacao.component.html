@@ -1,1 +1,66 @@
-<p>transacao works!</p>
+<app-menu-superior nomePagina="Transações"></app-menu-superior>
+<app-menu-lateral></app-menu-lateral>
+<div class="card">
+  <p-table #dt1 [value]="transacoes" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+    [loading]="false" [tableStyle]="{ 'width': '100%' }"
+    styleClass="p-datatable-gridlines" [resizableColumns]="true">
+    
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between align-items-center gap-2">
+        <div class="flex gap-2">
+          <p-button label="Limpar" [outlined]="true" icon="pi pi-filter-slash" class="botao-icone" (onClick)="limpar(dt1)" />
+          <p-button label="Adicionar transação" icon="pi pi-plus" (onClick)="abrirDialog()" class="botao-adicionar botao-icone" />
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id"> ID <p-sortIcon field="id" /></th>
+        <th pSortableColumn="data" style="min-width:10rem">Data <p-sortIcon field="data" /></th>
+        <th pSortableColumn="tipo" style="min-width:10rem">Tipo <p-sortIcon field="tipo" /></th>
+        <th pSortableColumn="valor" style="min-width:10rem">Valor <p-sortIcon field="valor" /></th>
+        <th pSortableColumn="produto" style="min-width:15rem">
+          Produto
+          <p-columnFilter type="text" field="produto" display="menu" />
+        </th>
+        <th pSortableColumn="pedido" style="min-width:10rem">Pedido <p-sortIcon field="pedido" /></th>
+        <th style="min-width:3rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transacao >
+      <tr>
+        <td>{{ transacao.id }}</td>
+        <td>{{ transacao.data | date : 'dd/MM/yyyy' }}</td>
+        <td>{{ transacao.tipo }}</td>
+        <td>{{ transacao.valor | currency }}</td>
+        <td>{{ transacao.produto?.nome }}</td>
+        <td>{{ transacao.pedido_id }}</td>
+        <td>
+          <p-button
+            icon="pi pi-pencil"
+            class="mr-2 gap-2"
+            [rounded]="true"
+            [outlined]="true"
+            severity="success"
+            (onClick)="editaTransacao(transacao)" />
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            [rounded]="true"
+            [outlined]="true"
+            (onClick)="abrirConfirmacaoExclusao(transacao)" /> 
+        </td>
+    </ng-template>
+</p-table>
+</div>
+
+<app-dialog [(visible)]="dialogVisible" tituloFormulario="transação">
+  <app-formulario-transacao (salvar)="salvarTransacao($event)" [transacao]="transacaoSelecionada"></app-formulario-transacao>  
+</app-dialog>
+
+<app-confirmation-dialog
+  (onConfirm)="deletaTransacao()">
+</app-confirmation-dialog>
+
+<p-toast></p-toast>
+

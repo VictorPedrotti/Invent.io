@@ -45,3 +45,12 @@ export interface ItemPedido {
   quantidade: number
   precoUnitario: number  
 }
+
+export interface Transacao {
+  id: number
+  data: Date
+  tipo: string
+  valor: number
+  produto_id: number
+  pedido_id: number
+}

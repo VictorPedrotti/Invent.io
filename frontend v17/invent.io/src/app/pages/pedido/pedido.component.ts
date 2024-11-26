@@ -118,7 +118,6 @@ export class PedidoComponent implements OnInit{
   }
 
   salvarPedido(pedidoData: Pedido) {
-    console.log(pedidoData)
     if (this.isEditMode) {
       const pedidoEditado = { ...pedidoData, id: this.pedidoSelecionado.id}
       this.pedidoService.editarRegistro(pedidoEditado).subscribe({

@@ -1,1 +1,55 @@
-<p>formulario-transacao works!</p>
+<div class="form-geral">
+  <form [formGroup]="transacaoForm">
+    <label for="produtos" class="mb-2 block font-bold">Produto</label>
+    <p-dropdown 
+      [options]="produtos" 
+      optionLabel="nome" 
+      optionValue="id" 
+      formControlName="produto_id">
+    </p-dropdown>
+    <div class="formgrid grid dois-campos">
+      <div class="field col-6">
+        <label for="valor" class="mb-2 block font-bold">Valor</label>
+        <p-inputNumber id="valor" formControlName="valor" min="0"/> 
+      </div>
+      <div class="field col-6">
+        <label for="cliente_id" class="mb-2 block font-bold">Pedido</label>
+        <p-dropdown 
+          [options]="pedidos" 
+          optionLabel="id" 
+          optionValue="id" 
+          formControlName="pedido_id">
+        </p-dropdown>
+        <small 
+          class="p-error" 
+          *ngIf="submitted && !transacaoForm.get('pedido_id')?.valid">
+          Pedido é obrigatório.
+        </small>   
+      </div>
+    </div>
+    <div class="formgrid grid dois-campos">
+      <div class="field col-6">
+        <label for="data" class="mb-2 block font-bold">Data</label>
+        <input type="date" pInputText formControlName="data">
+        <small class="p-error" *ngIf="submitted && !transacao.data">
+          Data é obrigatória.
+        </small>
+      </div>
+      <div class="field col-6">
+        <label for="tipo" class="mb-2 block font-bold">Tipo</label>
+        <p-dropdown
+          [options]="tipo"
+          formControlName="tipo"/>
+      </div>
+    </div>
+      
+    <p-button 
+      label="Salvar" 
+      [outlined]="true" 
+      severity="primary" 
+      (onClick)="salvarForm()"
+      [disabled]="transacaoForm.invalid" 
+      styleClass="botao-salvar-centralizado">
+    </p-button>
+  </form>
+</div>

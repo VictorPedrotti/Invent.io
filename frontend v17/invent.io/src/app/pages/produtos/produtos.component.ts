@@ -42,8 +42,6 @@ export class ProdutosComponent implements OnInit{
   fornecedores: Fornecedor[] = [];
   produtoSelecionado!: Produto;
   filtroPesquisa: string = '';
-  lastSortedField: string | null = null;
-  lastOrder: number = 1;
   dialogVisible: boolean = false;
   isEditMode = false;
   @ViewChild('dt1') dt1!: Table;
@@ -91,7 +89,7 @@ editaProduto(produto: Produto) {
           this.dialogVisible = false;
         },
         error: err => {
-          this.messageService.add({ severity: 'error', summary: 'Erro ao atualizar produto', detail: err.message})
+          this.messageService.add(err)
         }
       })
     } else {
@@ -102,7 +100,7 @@ editaProduto(produto: Produto) {
           this.dialogVisible = false;
         },
         error: err => {
-          this.messageService.add({ severity: 'error', summary: 'Erro ao adicionar produto', detail: err})  
+          this.messageService.add(err)  
           this.dialogVisible = false;
         }
       })
@@ -122,7 +120,7 @@ editaProduto(produto: Produto) {
         this.buscaProdutos(); 
       },
       error: err => {
-        this.messageService.add({ severity: 'error', summary: 'erro', detail: err })
+        this.messageService.add(err)
       }
     })
   }
