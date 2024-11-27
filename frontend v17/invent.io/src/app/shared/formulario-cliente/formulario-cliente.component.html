@@ -3,9 +3,6 @@
     <div class="field">
       <label for="nome" class="mb-2 block font-bold">Nome</label>
       <input id="nome" type="text" pInputText formControlName="nome" required />
-      <small class="p-error" *ngIf="submitted && clienteForm.get('nome')?.invalid">
-        Nome é obrigatório.
-      </small>
     </div>
     
     <div class="formgrid grid linha-contato-cnpj">
@@ -15,9 +12,6 @@
           mask="999.999.999.99"
           formControlName="cpf_cnpj"
           required />
-        <small class="p-error" *ngIf="submitted && clienteForm.get('cpf_cnpj')?.invalid">
-          CPF/CNPJ é obrigatório.
-        </small>
       </div>
 
       <div class="field col-6">

@@ -4,6 +4,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TokenService } from '../../core/services/authService/token.service';
 
 @Component({
   selector: 'app-menu-superior',
@@ -21,4 +22,18 @@ export class MenuSuperiorComponent {
 
   @Input() nomePagina: string = 'Dashboard';
   sidebarVisible: boolean = true;
+
+  constructor(
+    private tokenService: TokenService,
+    private router: Router
+  ) {}
+
+  desconectar() {
+    this.tokenService.excluirToken();
+    this.router.navigate(['/login']);
+  }
+
+
 }
+
+

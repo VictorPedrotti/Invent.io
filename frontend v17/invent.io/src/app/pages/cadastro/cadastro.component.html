@@ -1,1 +1,55 @@
-<p>cadastro works!</p>
+<div class="background">
+  <img src="../../../assets/imagens/logo_branca.png" alt="Logo" class="logo">
+  <div class="form-card">
+    <form [formGroup]="cadastroForm" (ngSubmit)="cadastraUsuario()">
+      <p-card [style]="{ width: '540px', padding: '3rem', borderRadius: '2rem' }">
+        <ng-template pTemplate="header">
+          <div class="header-card">
+            <i class="pi pi-user" style="font-size: 3rem"></i>
+            <h2>Bem-vindo, Usuário!</h2>
+            <p>Faça seu cadastro para continuar</p>
+          </div>
+        </ng-template>
+        <div class="form-content">
+          <label for="nome" class="mb-2 block font-bold">Nome</label>
+          <input 
+            id="nome" 
+            pInputText 
+            formControlName="nome" 
+            placeholder="Digite seu nome" 
+            [ngClass]="{'invalid': cadastroForm.get('nome')?.touched && cadastroForm.get('nome')?.invalid}"/>
+
+          <label for="email" class="mb-2 block font-bold">E-mail</label>
+          <input 
+            id="email" 
+            type="email" 
+            pInputText 
+            formControlName="email" 
+            placeholder="Digite seu e-mail"
+            [ngClass]="{'invalid': cadastroForm.get('email')?.touched && cadastroForm.get('email')?.invalid}"/>
+
+          <label for="senha" class="mb-2 block font-bold">Senha</label>
+          <input 
+            id="senha" 
+            type="password" 
+            pInputText 
+            formControlName="senha" 
+            placeholder="Digite sua senha"
+            [ngClass]="{'invalid': cadastroForm.get('senha')?.touched && cadastroForm.get('senha')?.invalid}"/>
+
+          <label for="confirmaSenha" class="mb-2 block font-bold">Confirmação de senha</label>
+          <input 
+          id="confirmaSenha" 
+          type="password" 
+          pInputText 
+          formControlName="confirmaSenha" 
+          placeholder="Confirme sua senha"
+          [ngClass]="{'invalid': cadastroForm.get('confirmaSenha')?.touched && cadastroForm.get('confirmaSenha')?.invalid}"/>
+        </div>
+        <button pButton type="submit" label="CADASTRAR" class="submit-btn"></button>
+      </p-card>
+    </form>
+  </div>
+</div>
+
+<p-toast></p-toast>

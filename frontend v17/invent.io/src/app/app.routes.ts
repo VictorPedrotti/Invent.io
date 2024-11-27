@@ -7,6 +7,7 @@ import { PedidoComponent } from './pages/pedido/pedido.component';
 import { ItensPedidoComponent } from './pages/itens-pedido/itens-pedido.component';
 import { TransacaoComponent } from './pages/transacao/transacao.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'pedidos', component: PedidoComponent},
   { path: 'itensPedido/pedido/:id', component: ItensPedidoComponent },
   { path: 'transacoes', component: TransacaoComponent},
-  { path: 'dashboard', component: DashboardComponent}
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'cadastro', component: CadastroComponent}
 ];

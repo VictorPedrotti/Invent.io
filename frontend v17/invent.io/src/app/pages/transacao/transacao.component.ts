@@ -32,7 +32,7 @@ import { TradutorService } from '../../core/services/tradutor.service';
     DialogComponent,
     FormularioTransacaoComponent
 ],
-providers: [MessageService],
+  providers: [MessageService],
   templateUrl: './transacao.component.html',
   styleUrl: './transacao.component.scss'
 })

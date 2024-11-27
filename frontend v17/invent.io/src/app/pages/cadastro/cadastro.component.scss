@@ -1,0 +1,66 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.logo {
+  width: 5rem;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.form-card {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.card {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-content > input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.submit-btn {
+  display: block; 
+  width: 80%;
+  margin: 0 auto; 
+  background-color: #295255;
+  color: #fff;
+  margin-top: 3rem;
+}
+
+.header-card {
+  text-align: center;
+}
+
+.p-error {
+  display: block;
+  margin-top: 4px; 
+  font-size: 0.85rem; 
+  text-align: left;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem; 
+  width: 100%;
+}
+
+.invalid {
+  border: 1px solid red; 
+}
+

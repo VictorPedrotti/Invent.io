@@ -6,7 +6,7 @@
         <ng-template pTemplate="header">
           <div class="header-card">
             <i class="pi pi-user" style="font-size: 3rem"></i>
-            <h2>Bem-vindo, Rodds!</h2>
+            <h2>Bem-vindo, Usuário!</h2>
             <p>Faça login para continuar</p>
           </div>
         </ng-template>
@@ -21,10 +21,12 @@
             <p-checkbox binary="true" class="remember-checkbox"></p-checkbox>
             <label for="lembrarLogin">Lembrar de mim</label>
           </div>
-          <a class="forgot-password" href="#">Esqueceu a senha?</a>
+          <a class="forgot-password" href="/cadastro">Não possui cadastro?</a>
         </div>
         <button pButton type="submit" label="CONTINUAR" class="submit-btn"></button>
       </p-card>
     </form>
   </div>
 </div>
+
+<p-toast></p-toast>

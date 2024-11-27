@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +23,10 @@ import { CheckboxModule } from 'primeng/checkbox';
     CommonModule,
     CardModule,
     PasswordModule,
-    CheckboxModule
+    CheckboxModule,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -33,7 +37,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private autenticacaoService: AutenticacaoService
+    private authService: AutenticacaoService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +52,12 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid) {
       const { email, senha } = this.loginForm.value;
 
-      this.autenticacaoService.autenticar(email, senha).subscribe({
+      this.authService.autenticar(email, senha).subscribe({
         next: (response) => {
-          console.log('Login bem-sucedido', response)
           this.router.navigate(['/produtos']);
         },
         error: (err) => {
-          console.error('Erro ao fazer login', err)
+          this.messageService.add({ severity: 'warn', summary: 'Credenciais Inválidas', detail: 'Usuário ou senha incorretos' });
         }
       })
 

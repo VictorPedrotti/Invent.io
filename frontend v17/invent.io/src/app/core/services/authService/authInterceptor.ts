@@ -6,7 +6,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const tokenService = inject(TokenService);
   const token = tokenService.retornarToken();
 
-  const filtroUrls = ['/login', '/registro'];
+  const filtroUrls = ['/login', '/cadastro'];
  
   if (filtroUrls.some(url => req.url.includes(url))) {
     return next(req);

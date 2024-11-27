@@ -30,6 +30,21 @@ export class AutenticacaoService {
         this.tokenService.salvarToken(authToken);
       })
     )
-  
+  }
+
+  cadastrarUsuario(nome: string, email: string, senha: string,  admin: boolean): Observable<any> {
+    const payload = { nome, email, senha, admin };
+
+    return this.http.post<any>(
+      `${this.apiUrl}/cadastro`,
+      payload
+    ).pipe(
+      tap((response) => {
+        const authToken = response.token; 
+        if (authToken) {
+          this.tokenService.salvarToken(authToken); 
+        }
+      })
+    );
   }
 }
