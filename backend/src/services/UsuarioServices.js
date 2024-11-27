@@ -15,6 +15,13 @@ class UsuarioServices extends Services {
     }
     return null;
   }
+
+  async buscaPorEmail(email){
+    const usuario = await dataSource['Usuario'].findOne({ where: { email } });
+    return usuario
+  }
 }
+
+
 
 module.exports = UsuarioServices;

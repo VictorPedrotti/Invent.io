@@ -11,6 +11,12 @@ class UsuarioController extends Controller {
   async criaNovo(req, res) {
     const dadosParaCriacao = req.body;
     try {
+
+      const usuarioExistente = await this.entidadeService.buscaPorEmail(dadosParaCriacao.email);
+      if (usuarioExistente) {
+        return res.status(400).json({ mensagem: 'Email já cadastrado.' });
+      }
+      
       const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
       const { senha, ...user } = novoRegistroCriado.dataValues;
 
