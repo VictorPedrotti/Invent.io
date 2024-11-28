@@ -12,6 +12,7 @@ import { DialogComponent } from "../../shared/dialog/dialog.component";
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog/confirmation-dialog.component";
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -46,6 +47,7 @@ export class ClientesComponent implements OnInit{
     private clienteService: ClienteService,
     private tradutorService: TradutorService,
     private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -61,14 +63,8 @@ export class ClientesComponent implements OnInit{
     this.dialogVisible = true; 
   }
 
-  //trabalhar essa ideia!! Buscar itens pedido?
   abreHistoricoDeCompra(cliente: Cliente) {
-    this.historicoAberto = true;
-    
-    this.clienteService.buscaPedidosPorClienteId(cliente.id).subscribe((listaPedidos) => {
-      this.pedidos = listaPedidos;
-      console.log(listaPedidos);
-    })
+    this.router.navigate([`clientes/${cliente.id}/pedido`]);
   }
 
   fecharHistorico() {

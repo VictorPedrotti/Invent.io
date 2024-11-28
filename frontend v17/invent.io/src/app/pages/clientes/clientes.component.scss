@@ -10,9 +10,8 @@
   align-items: center;
 }
 
-.gap-2 {
-  gap: 0.5rem; 
+::ng-deep .gap-2 {
+  margin-right: 0.5rem;
 }
-
 
 

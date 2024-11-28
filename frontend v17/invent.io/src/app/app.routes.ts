@@ -8,6 +8,7 @@ import { ItensPedidoComponent } from './pages/itens-pedido/itens-pedido.componen
 import { TransacaoComponent } from './pages/transacao/transacao.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { HistoricoCompraComponent } from './pages/historico-compra/historico-compra.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'itensPedido/pedido/:id', component: ItensPedidoComponent },
   { path: 'transacoes', component: TransacaoComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'cadastro', component: CadastroComponent}
+  { path: 'cadastro', component: CadastroComponent},
+  { path: 'clientes/:id/pedido', component: HistoricoCompraComponent}
 ];
