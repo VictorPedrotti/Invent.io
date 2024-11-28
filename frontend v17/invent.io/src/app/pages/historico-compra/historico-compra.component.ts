@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Cliente, Pedido } from '../../core/types/types';
 import { ClienteService } from '../../core/services/cliente.service';
 import { ActivatedRoute } from '@angular/router';
+import { TradutorService } from '../../core/services/tradutor.service';
 
 @Component({
   selector: 'app-historico-compra',
@@ -30,11 +31,13 @@ export class HistoricoCompraComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tradutorService: TradutorService
   ) {}
 
   ngOnInit(): void {
     this.buscaClientes();
+    this.tradutorService.setTranslation();
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
