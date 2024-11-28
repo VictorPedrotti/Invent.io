@@ -14,7 +14,7 @@ class ClienteController extends Controller {
       const listaPedidos = await clienteServices.buscaPedidosPorCliente(Number(id));
       return res.status(200).json(listaPedidos);
     } catch (erro) {
-        res.status(500).json({ erro: erro.message });
+        res.status(500).json({ mensagem: erro.message });
     }
   }
 }
